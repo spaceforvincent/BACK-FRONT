@@ -54,5 +54,17 @@ class ModelView(TemplateView):
 
 ```
 
-14.templates 폴더에 agency 부트스트랩 파일들 복사해와서 index.html -> home.html 이름 변경
+14.agency 부트스트랩 파일들 복사해와서 
+
+​	css, js -> static	
+
+​	index.html -> home.html 이름 변경
+
+15. home.html에서 src = 'assets/' -> src = "{% static 'assets/' %}"로 변경
+
+    href도 static 파일들은 static 형식으로 변경
+
+16. 그 외에 알아서 꾸미기
+
+
 
