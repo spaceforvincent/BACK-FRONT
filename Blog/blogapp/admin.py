@@ -10,7 +10,7 @@ class PostAdmin(admin.ModelAdmin):
         return ','.join([t.name for t in obj.tags.all()])
 
     def get_queryset(self,request): #테이블로부터 포스트 가져올 때 tag도 같이 가져옴
-        return super().get.queryset(request).prefetch_related('tags')
+        return super().get_queryset(request).prefetch_related('tags')
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
