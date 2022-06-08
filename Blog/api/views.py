@@ -11,7 +11,7 @@ class ApiPostLV(BaseListView):
 
     def render_to_response(self, context, **response_kwargs):
         qs = context['object_list']
-        postList = [obj_to_post(obj) for obj in qs]
+        postList = [obj_to_post(obj, False) for obj in qs]
         return JsonResponse(data=postList,safe=False,status=200)
 
 
