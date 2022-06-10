@@ -36,3 +36,25 @@ def obj_to_post(obj,flag=True):
         del post['tags'],post['updated_at'], post['description'], post['content']
     
     return post
+
+
+def prev_next_post(obj):
+    try:
+        prevObj = obj.get_previous_by_updated_at()
+        prevDict = {
+            'id' : prevObj.id,
+            'title': prevObj.title,
+        }
+    except obj.DoesNotExist:
+        prevDict = {}
+    
+    try:
+        nextObj = obj.get_next_by_updated_at()
+        nextDict = {
+            'id' : nextObj.id,
+            'title': nextObj.title,
+        }
+    except obj.DoesNotExist:
+        nextDict = {}
+    
+    return prevDict, nextDict
