@@ -37,6 +37,25 @@ def obj_to_post(obj,flag=True):
     
     return post
 
+def obj_to_comment(obj):
+    """
+    comment 객체를 serialize한다.
+    """
+    comment = dict(vars(obj)) #object를 dictionary로 형 변환
+    #blogapp의 models.py에서 char, int 필드들은 제외하고 serialize한다
+    #ex) content는 이미 str타입이므로 updated_at만 serialize해주면 된다
+    
+    
+    if obj.updated_at:
+        comment['updated_at'] = obj.updated_at.strftime('%Y-%m-%d %H:%M:%S')
+    else:
+        comment['updated_at'] = '9999-12-31 00:00:00'
+
+
+    del comment['_state'], comment['post_id'], comment['created_at'] #불필요한 필드들 삭제
+    
+    return comment
+
 
 def prev_next_post(obj):
     try:
