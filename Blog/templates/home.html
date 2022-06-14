@@ -4,15 +4,18 @@
 
 {% block title %}home.html{% endblock title %}
 {% block extra-style %}
+{{ block.super }}
 <style>
     .my-img-h300{
         width:100%;
         height:300px;
         object-fit:cover;
     }
-
     .my-post-title{
         height:60px;
+    }
+    .my-link:hover{
+        cursor:pointer;
     }
     </style>
 {% endblock extra-style %}
@@ -50,19 +53,23 @@
                         </div>
                     </div>
                 </div>
-                <nav aria-label="Page navigation example">
+
+                {% comment %} My Pagination {% endcomment %}
+                
                     <ul class="pagination justify-content-center">
-                      <li class="page-item disabled">
-                        <a class="page-link">Previous</a>
+                      <li :class="prevClass">
+                        <div @click="prevPage" class="page-link">Previous</div>
                       </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                      
+                      
+                      <li v-for="page in pages" :class="pageClass(page)">
+                        <div @click="pageChanged(page)" class="page-link">[[ page ]]</div>
+                    </li>
+                      
+                      <li :class="nextClass">
+                        <div @click="nextPage" class="page-link">Next</div>
                       </li>
                     </ul>
-                  </nav>
             </div>
         </section>
         <!-- Iam-->
