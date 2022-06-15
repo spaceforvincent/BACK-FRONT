@@ -23,7 +23,7 @@ class HomeView(ListView):
             qs = Post.objects.filter(tags__name__iexact=paramTag)
         else:
             qs = Post.objects.all()
-        return qs
+        return qs.select_related('category').prefetch_related('tags')
 
     def get_context_data(self, *, object_list = None, **kwargs):
         context =  super().get_context_data()

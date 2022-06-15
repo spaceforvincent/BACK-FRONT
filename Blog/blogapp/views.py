@@ -9,8 +9,11 @@ import json
 #     template_name = 'blogapp/post_detail.html'
 
 class PostDV(DetailView):
-    model = Post
+    # model = Post
     template_name = 'blogapp/post_detail.html'
+
+    def get_queryset(self):
+        return Post.objects.all.select_related('category').prefetch_related('tags','comment_set') #1은 select_related, N은 prefetch_related
 
     def get_context_data(self, **kwargs):
         context = super(PostDV, self).get_context_data()

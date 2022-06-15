@@ -11,6 +11,9 @@ class Post(models.Model):
     updated_at = models.DateTimeField('UPDATED_AT',auto_now=True)
     like = models.PositiveSmallIntegerField('LIKE', default=0)
 
+    class Meta:
+        ordering=('updated_at',)
+
     def __str__(self):
         return self.title
 
